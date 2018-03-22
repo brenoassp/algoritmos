@@ -23,6 +23,21 @@ class ListaSimplesmenteEncadeada:
             print('{} '.format(no_atual.valor))
             no_atual = no_atual.prox
 
+    def tamanho(self):
+        no_atual = self.primeiro
+        tam = 0
+        while no_atual:
+            tam += 1
+            no_atual = no_atual.prox
+        return tam
+
+    def get_palavra(self):
+        no_atual = self.primeiro
+        palavra = ''
+        while no_atual:
+            palavra += no_atual.valor
+            no_atual = no_atual.prox
+        return palavra
 
 class Pilha:
     topo = None
@@ -42,6 +57,10 @@ class Pilha:
 
 
 def lista_reversa(lista):
+    """
+    Constroi uma lista lista_rev a partir de lista que contem os valores em ordem reversa.
+    Primeira parte exercicio 1
+    """
     lista_rev = ListaSimplesmenteEncadeada()
     pilha_aux = Pilha()
 
@@ -55,6 +74,18 @@ def lista_reversa(lista):
         lista_rev.inserir(pilha_aux.remover().valor)
 
     return lista_rev
+
+
+def lista_soma(lista):
+    """
+    Constroi uma lista l2 a partir de lista quando o tamanho da lista fornecida for par
+    """
+    if lista.tamanho() % 2 != 0:
+        return
+    else:
+        pilha = Pilha()
+        no_atual = lista.primeiro
+        #while no_atual:
 
 
 if __name__ == '__main__':
