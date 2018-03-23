@@ -39,6 +39,7 @@ class ListaSimplesmenteEncadeada:
             no_atual = no_atual.prox
         return palavra
 
+
 class Pilha:
     topo = None
 
