@@ -12,7 +12,7 @@ class No:
 
 class Matriz:
     """
-    Matriz esparsa
+    Matriz esparsa, estou considerando que começa com índice 0 nas linhas e colunas
     """
     primeiro = None
     linhas = None
