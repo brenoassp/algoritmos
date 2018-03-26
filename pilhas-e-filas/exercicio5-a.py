@@ -9,6 +9,9 @@ class ListaDuplamenteEncadeada:
     ultimo = None
 
     def contido(self, valor):
+        '''
+        Complexidade: O(n)
+        '''
         no_atual = self.primeiro
         while no_atual:
             if no_atual.valor == valor:
@@ -17,6 +20,9 @@ class ListaDuplamenteEncadeada:
         return False
 
     def inserir(self, valor):
+        '''
+        Complexidade: O(1)
+        '''
         no = No()
         no.valor = valor
         if self.ultimo:
@@ -29,6 +35,9 @@ class ListaDuplamenteEncadeada:
         return
 
     def remover(self, valor):
+        '''
+        Complexidade: O(n)
+        '''
         if not self.contido(valor):
             raise ValueError("o valor fornecido nao esta contido na lista")
         no_atual = self.primeiro

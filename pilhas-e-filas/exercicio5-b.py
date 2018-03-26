@@ -8,6 +8,9 @@ class Fila:
     tail = None #fim
 
     def contido(self, valor):
+        '''
+        Complexidade: O(n)
+        '''
         no_atual = self.head
         while no_atual:
             if no_atual.valor == valor:
@@ -16,6 +19,9 @@ class Fila:
         return False
 
     def inserir(self, valor):
+        '''
+        Complexidade: O(1)
+        '''
         no = No()
         no.valor = valor
         if self.tail:
@@ -27,6 +33,9 @@ class Fila:
         return
 
     def remover(self):
+        '''
+        Complexidade: O(1)
+        '''
         no_removido = self.head
         self.head = self.head.proximo
         if not self.head:

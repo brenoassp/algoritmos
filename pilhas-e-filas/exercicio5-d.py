@@ -9,6 +9,9 @@ class ListaDuplamenteEncadeadaCircular:
     ultimo = None
 
     def contido(self, valor):
+        '''
+        Complexidade: O(n)
+        '''
         if not self.ultimo:
             return False
         no_atual = self.primeiro
@@ -21,6 +24,9 @@ class ListaDuplamenteEncadeadaCircular:
         return False
 
     def inserir(self, valor):
+        '''
+        Complexidade: O(1)
+        '''
         no = No()
         no.valor = valor
         if not self.ultimo:
@@ -34,6 +40,9 @@ class ListaDuplamenteEncadeadaCircular:
         self.ultimo = no
 
     def remover(self, valor):
+        '''
+        Complexidade: O(n)
+        '''
         if not self.contido(valor):
             raise ValueError("o valor fornecido nao esta contido na lista")
         if self.primeiro == self.ultimo:
