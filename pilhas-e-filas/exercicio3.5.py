@@ -49,7 +49,6 @@ class Matriz:
         :param coluna: indice da coluna
         :param valor: valor
         """
-
         def insere_meio_linha(no):
             no_buscado = self.busca(linha, coluna)
             if not no_buscado:
@@ -100,9 +99,9 @@ class Matriz:
                 insere_meio_linha(no)
                 insere_meio_coluna(no)
             elif posicao == 'L':
-                insere_meio_linha(no)
+                self.lista_colunas[no.coluna] = insere_meio_linha(no)
             elif posicao == 'C':
-                insere_meio_coluna(no)
+                self.lista_linhas[no.linha] = insere_meio_coluna(no)
             else:
                 raise ValueError("Posicao invalida")
 
@@ -113,34 +112,6 @@ class Matriz:
         no.valor = valor
         no.linha = linha
         no.coluna = coluna
-
-        # if not self.lista_linhas[linha]:
-        #     self.lista_linhas[linha] = no
-        #
-        #     if not self.lista_colunas[coluna]:
-        #         self.lista_colunas[coluna] = no
-        #         return
-        #     else:
-        #         no_buscado = self.busca(linha, coluna)
-        #         if not no_buscado: # não existe nó para essa posição ainda
-        #             no_anterior_coluna = None
-        #             no_atual_coluna = self.lista_colunas[coluna]
-        #             while no_atual_coluna and (no_atual_coluna.linha < no.linha):
-        #                 no_anterior_coluna = no_atual_coluna
-        #                 no_atual_coluna = no_atual_coluna.no_baixo
-        #             if not no_atual_coluna: # o nó inserido estará na maior linha (com no_baixo null)
-        #                 no_anterior_coluna.no_baixo = no
-        #             elif not no_anterior_coluna: # o nó inserido estará entre dois nós OU será o primeiro nó da coluna
-        #                 no.no_baixo = no_atual_coluna
-        #                 self.lista_colunas[coluna] = no
-        #             else:
-        #                 no.no_baixo = no_atual_coluna
-        #                 no_anterior_coluna.no_baixo = no
-        #         else:
-        #             no_buscado.valor = valor
-        #         return
-        # elif not self.lista_colunas[coluna]:
-        #     self.lista_colunas[coluna] = no
 
         primeira_linha = self.lista_linhas[linha]
         primeira_coluna = self.lista_colunas[coluna]
@@ -161,12 +132,22 @@ class Matriz:
 
         return
 
+    def imprimir(self):
+        for i in self.lista_linhas:
+            if i:
+                no_atual = i
+                while no_atual:
+                    print(no_atual)
+                    no_atual = no_atual.no_direita
+
 
 if __name__ == '__main__':
 
     m = Matriz(5, 5)
-    m.inserir(1, 1, 40)
-    m.inserir(1, 2, 30)
+    m.inserir(0, 0, 40)
+    m.inserir(0, 1, 30)
+    m.inserir(1, 0, 200)
+    m.inserir(1, 1, 37)
+    m.inserir(2, 1, 8)
 
-    print(m.busca(1, 1))
-    print(m.busca(1, 2))
+    m.imprimir()
