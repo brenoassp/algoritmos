@@ -33,6 +33,8 @@ class Arvore:
 
 def morris_in_ordem(raiz):
 
+    print('morris in ordem')
+
     def visita(p):
         print(p.valor)
 
@@ -57,28 +59,26 @@ def morris_in_ordem(raiz):
 
 def morris_pre_ordem(raiz):
 
+    print('morris pre ordem')
+
     def visita(p):
         print(p.valor)
 
     p = raiz
     tmp = None
     while p is not None:
-        if tmp is not None and tmp.dir == p:
-            tmp.dir = None
-            tmp = p
-            p = p.dir
-        else:
-            visita(p)
         if p.esq is None:
+            visita(p)
             p = p.dir
         else:
             tmp = p.esq
             while tmp.dir is not None and tmp.dir != p:
                 tmp = tmp.dir
-            if tmp.dir is None:
+            if tmp.dir is None: #visitar p e setar direita do nó
+                visita(p)
                 tmp.dir = p
                 p = p.esq
-            else:
+            else: #já visitou p e sua SAE, entao só ir para direita, mas primeiro consertar a árvore
                 tmp.dir = None
                 p = p.dir
 
