@@ -96,7 +96,7 @@ def multiplica_matriz(m1, m2):
     Para calcular todos os elementos da nova matriz, é preciso multiplicar pela quantidade de elementos m * n
     O(m * k * m * n) = O (m²nk)
     """
-    if m1.colunas != m2.colunas:
+    if m1.colunas != m2.linhas:
         raise Exception("impossivel multiplicar as matrizes")
     matriz_resultado = Matriz(m1.linhas, m2.colunas)
     for i in range(m1.linhas):
