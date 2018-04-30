@@ -85,6 +85,9 @@ class ArvoreBinariaBusca:
 
         if raiz is None:
             raise Exception("Nao há nenhum elemento com a chave fornecida")
+        if self.raiz.chave == chave and eh_folha(self.raiz):
+            self.raiz = None
+            return
         if raiz.chave == chave:
             if eh_folha(raiz):
                 del raiz
@@ -108,6 +111,7 @@ if __name__ == '__main__':
     abb = ArvoreBinariaBusca()
 
     abb.insere(No(5))
+    abb.insere(No(1))
     abb.insere(No(10))
 
     abb.imprime()
