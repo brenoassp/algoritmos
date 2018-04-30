@@ -50,18 +50,18 @@ def rotacao_dir(no):
     # do no passado como parametro não é None
 
     #feito por mim (ambos não funcionam)
-    aux = no
-    no = no.esq
-    esq_dir = no.dir
-    no.dir = aux
-    no.dir.esq = esq_dir
-    return no
+    # aux = no
+    # no = no.esq
+    # esq_dir = no.dir
+    # no.dir = aux
+    # no.dir.esq = esq_dir
+    # return no
 
     #feito em aula
-    # aux = no.esq
-    # no.esq = aux.dir
-    # aux.dir = no
-    # return aux
+    aux = no.esq
+    no.esq = aux.dir
+    aux.dir = no
+    return aux
 
 
 def cria_espinha_dorsal(no):
