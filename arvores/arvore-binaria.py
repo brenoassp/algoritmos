@@ -45,32 +45,32 @@ class ArvoreBinaria:
             self.imprime_(raiz.dir)
 
 
-def rotacao_dir(no):
-    #tem que garantir que filho a esquerda
+def rotacao_dir(no, avo):
+    # tem que garantir que filho a esquerda
     # do no passado como parametro não é None
 
-    #feito por mim (ambos não funcionam)
-    # aux = no
-    # no = no.esq
-    # esq_dir = no.dir
-    # no.dir = aux
-    # no.dir.esq = esq_dir
-    # return no
-
-    #feito em aula
     aux = no.esq
     no.esq = aux.dir
     aux.dir = no
+    if avo:
+        avo.dir = aux
     return aux
 
 
-def cria_espinha_dorsal(no):
-    tmp = no
-    while tmp is not None:
-        if tmp.esq is not None:
-            tmp = rotacao_dir(tmp)
+def cria_espinha_dorsal(arv):
+    pai = arv.raiz
+    avo = None
+    raiz_nova_arvore = None
+    while pai is not None:
+        if not avo and not pai.esq:
+            raiz_nova_arvore = pai
+        if pai.esq is not None:
+            pai = rotacao_dir(pai, avo)
         else:
-            tmp = tmp.dir
+            avo = pai
+            pai = pai.dir
+
+    arv.raiz = raiz_nova_arvore
 
 
 if __name__ == '__main__':
@@ -83,9 +83,9 @@ if __name__ == '__main__':
     ab.insere(No(23))
     ab.insere(No(30))
 
-    ab.imprime()
+    # ab.imprime()
 
-    cria_espinha_dorsal(ab.raiz)
+    cria_espinha_dorsal(ab)
     print('\n')
 
     ab.imprime()
