@@ -72,10 +72,16 @@ class ArvoreBinariaBusca:
         self.remove_(self.raiz, chave)
 
     def remove_(self, raiz, chave):
+
         def eh_folha(p):
             if p and p.dir is None and p.esq is None:
                 return True
             return False
+
+        def swap(p1, p2): #troca apenas informacao do no
+            aux = p1.chave
+            p1.chave = p2.chave
+            p2.chave = aux
 
         if raiz is None:
             raise Exception("Nao há nenhum elemento com a chave fornecida")
@@ -83,6 +89,13 @@ class ArvoreBinariaBusca:
             if eh_folha(raiz):
                 del raiz
                 return None
+            else:
+                if raiz.esq:
+                    swap(raiz, raiz.esq)
+                    raiz.esq = self.remove_(raiz.esq, chave)
+                elif raiz.dir:
+                    swap(raiz, raiz.dir)
+                    raiz.dir = self.remove_(raiz.dir, chave)
         elif chave < raiz.chave:
             raiz.esq = self.remove_(raiz.esq, chave)
             return raiz
@@ -90,28 +103,16 @@ class ArvoreBinariaBusca:
             raiz.dir = self.remove_(raiz.dir, chave)
             return raiz
 
+
 if __name__ == '__main__':
     abb = ArvoreBinariaBusca()
 
-
     abb.insere(No(5))
     abb.insere(No(10))
-    abb.insere(No(1))
 
     abb.imprime()
 
-    print(abb.contido(1))
-    print(abb.contido(5))
-    print(abb.contido(10))
-    print(abb.contido(66))
+    print("\n")
+    abb.remove(5)
 
-    no1 = No(10)
-    no2 = No(20)
-
-    no1.dir = no2
-
-    print(no1.dir)
-
-    del no2
-
-    print(no2)
+    abb.imprime()
